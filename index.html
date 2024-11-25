@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Dognut - $CUNUT</title>
+    <link rel="icon"
+        href="https://raw.githubusercontent.com/cunut/img/refs/heads/main/53E4E390-3C4E-4EDF-A0DD-C9B158627648.PNG"
+        type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bokor&display=swap');
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow-y: auto;
+        }
+
+        h1 {
+            font-family: "Bebas Neue", sans-serif;
+        }
+
+        #welcome-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgb(77, 44, 145), #1e1e2f);
+            color: white;
+            font-size: 1.5rem;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-left: 10px;
+            background-color: #00ffa3;
+            color: rgb(0, 0, 0);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #f1f1f1;
+        }
+
+        #typing-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="welcome-screen">
+        <h1 id="typing-text"></h1>
+        <div class="input-wrapper">
+            <input type="text" id="username" placeholder="Your Name">
+            <button onclick="enterSite()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+
+        const text = "Hello, Submit your name!";
+        const typingTextElement = document.getElementById("typing-text");
+        let index = 0;
+
+        function typeText() {
+            if (index < text.length) {
+                typingTextElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeText, 100);
+            } else {
+                setTimeout(() => {
+                    index = 0;
+                    typingTextElement.textContent = "";
+                    typeText();
+                }, 1000);
+            }
+        }
+
+        typeText();
+
+        function enterSite() {
+            const username = document.getElementById('username').value;
+            if (username.trim() === "") {
+                alert("Submit your name please :)");
+                return;
+            }
+            const url = `https://cunut.github.io/web/?name=${encodeURIComponent(username)}`;
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>
